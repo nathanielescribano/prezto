@@ -1,14 +1,63 @@
-#
-# Executes commands at the start of an interactive session.
-#
-# Authors:
-#   Sorin Ionescu <sorin.ionescu@gmail.com>
-#
-
 # Source Prezto.
 if [[ -s "${ZDOTDIR:-$HOME}/.zprezto/init.zsh" ]]; then
   source "${ZDOTDIR:-$HOME}/.zprezto/init.zsh"
 fi
 
 # Customize to your needs...
+export PATH=/usr/local/bin:$PATH
 
+# make sure the editor is vim
+export EDITOR=vim
+export VISUAL=vim
+
+# function c() {
+#        cd $1
+#        ls
+# }
+
+# awesome for finding files
+function findr() {
+  find . -name "*$1*"
+}
+
+function omvim() {
+  head -n $1 | tail -n 1 | xargs mvim
+}
+
+# quickly spellcheck a word by calling ie:
+# spell piza
+#
+# you have to install the following
+# sudo port install hunspell
+# sudo port install hunspell-dict-en_US
+function spell() {
+  echo "$1" | hunspell -d en_US
+}
+
+# rvm default
+[[ -s "/Users/nescribano/.rvm/scripts/rvm" ]] && source "/Users/nescribano/.rvm/scripts/rvm"  # This loads RVM into a shell session.
+export CC=gcc-4.2
+
+alias ber='bundle exec rspec'
+alias bes='bundle exec spork'
+alias bec='bundle exec cucumber'
+alias be='bundle exec'
+
+alias st='git st'
+alias lg='git lg'
+
+alias pry='pry -r ./config/environment'
+alias bpry='bundle exec pry -r ./config/environment'
+alias xmvim='xargs mvim'
+# modify files that have are unstagged
+alias mmvim='git diff --name-only $1 | xargs mvim'
+# modify files that have been stagged
+alias mmmvim='git diffs --name-only $1 | xargs mvim'
+
+# brew install fasd
+alias v='f -e vim'
+alias mvi='f -e mvim'
+
+alias c='fasd_cd -d'
+
+eval "$(fasd --init auto)"

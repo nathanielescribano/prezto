@@ -236,6 +236,9 @@ bindkey -M vicmd "v" edit-command-line
 bindkey -M vicmd "u" undo
 bindkey -M vicmd "$key_info[Control]R" redo
 
+# jj to insert mode
+bindkey -M viins "jj" vi-cmd-mode
+
 if (( $+widgets[history-incremental-pattern-search-backward] )); then
   bindkey -M vicmd "?" history-incremental-pattern-search-backward
   bindkey -M vicmd "/" history-incremental-pattern-search-forward
